@@ -13,6 +13,21 @@ class Core extends Component {
         messages: []
     }
 
+    layout = {
+        labelCol: {
+            span: 2,
+        },
+        wrapperCol: {
+            span: 8,
+        },
+    };
+    tailLayout = {
+        wrapperCol: {
+            offset: 2,
+            span: 3,
+        },
+    };
+
     componentDidMount() {
         this.getData()
     }
@@ -47,20 +62,7 @@ class Core extends Component {
     };
 
 
-    layout = {
-        labelCol: {
-            span: 2,
-        },
-        wrapperCol: {
-            span: 8,
-        },
-    };
-    tailLayout = {
-        wrapperCol: {
-            offset: 2,
-            span: 3,
-        },
-    };
+
 
     render() {
         return (

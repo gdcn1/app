@@ -8,8 +8,8 @@ const ContextState = () => {
     }
 
     const getRecordNumber = () => {
-        const rowNum = process.env.REACT_APP_RECORD_NUMBER_TO_DISPLAY
-        return !rowNum || +rowNum > 100 ? 20 : rowNum
+        const rowNum = Number(process.env.REACT_APP_RECORD_NUMBER_TO_DISPLAY)
+        return !rowNum || rowNum > 100 ? 20 : rowNum
     }
 
     return (
