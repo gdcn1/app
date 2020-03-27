@@ -1,5 +1,5 @@
 import axios from "axios";
-import Context from  '../utils/context';
+import Context from '../utils/context';
 
 export default axios.create({
     baseURL: Context.apiUrl,

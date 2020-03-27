@@ -16,8 +16,10 @@ router.post('/api/post/message', (req, res, next) => {
 });
 
 router.get('/api/get/messages', (req, res, next) => {
-    pool.query(`SELECT * FROM messages ORDER BY date_created desc limit 5`,
-        [], (q_err, q_res) => {
+    const num = Number(req.query.record)? Number(req.query.record):20;
+
+    pool.query(`SELECT * FROM messages ORDER BY date_created desc limit $1`,
+        [num], (q_err, q_res) => {
             if (q_res){
                 res.json(q_res.rows)
             } else {

@@ -1,35 +1,27 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import Context from './utils/context';
-import * as ACTIONS from './store/actions/actions';
-import * as CoreReducer from "./store/reducers/core_reducer";
-import Routes from './routes';
+import Core from "./component/core";
 
-const ContextState = (props) => {
-
-    const [stateCoin, dispatchCoinReducer] = useReducer(CoreReducer.CoreReducer,
-        CoreReducer.initialState)
-
-    const handleGetMessages = (messages) => {
-        dispatchCoinReducer(ACTIONS.set_db_posts(messages) )
-    }
-
+const ContextState = () => {
     const getApiUrl = () => {
-        console.log('API!!!!', process.env.REACT_APP_API_ENDPOINT)
         return process.env.REACT_APP_API_ENDPOINT
     }
 
+    const getRecordNumber = () => {
+        const rowNum = process.env.REACT_APP_RECORD_NUMBER_TO_DISPLAY
+        return !rowNum || +rowNum > 100 ? 20 : rowNum
+    }
 
-    return(
-      <div>
-      <Context.Provider
-          value={{
-              apiUrl: getApiUrl(),
-              messages: stateCoin.messages,
-              handleAddMessages: (messages) => handleGetMessages(messages)
-          }}>
-          <Routes />
-      </Context.Provider>
-      </div>
+    return (
+        <div>
+            <Context.Provider
+                value={{
+                    apiUrl: getApiUrl(),
+                    recordNumber: getRecordNumber()
+                }}>
+                <Core/>
+            </Context.Provider>
+        </div>
     )
 }
 
