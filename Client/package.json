@@ -1,0 +1,37 @@
+{
+  "name": "goodcoin",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "antd": "latest",
+    "axios": "^0.18.0",
+    "loadash": "^1.0.0",
+    "moment": "^2.24.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-js-pagination": "^3.0.2",
+    "react-scripts": "3.0.0"
+  },
+  "scripts": {
+    "start": "eval $(cat .env.development) react-scripts start",
+    "build": "eval $(cat .env.production) react-scripts build",
+    "test": "eval $(cat .env.development) react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
