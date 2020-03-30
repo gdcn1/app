@@ -2,32 +2,52 @@ var express = require('express')
 var router = express.Router()
 var pool = require('./db')
 
+function runQuery(sql, args ) {
+    return new Promise( ( resolve, reject ) => {
+        pool.query( sql, args, ( err, rows ) => {
+            if ( err )
+                return reject( err );
+            resolve( rows );
+        } );
+    } );
+}
 
 router.post('/api/post/message', (req, res, next) => {
     const message = String(req.body.message)
     const values = [message]
-    pool.query(`INSERT INTO
-              messages(message, date_created)
-              VALUES($1, NOW())`,
-        values, (q_err, q_res) => {
-            if (q_err) return next(q_err);
-            res.json(q_res.rows);
-        });
+    const sql = `INSERT INTO messages(message, date_created) VALUES($1, NOW())`
+    runQuery(sql, values).then((result)=>{
+        if (result.rows) {
+            res.json(result.rows);
+        }else {return next(result)}
+    }).catch(err => next(err))
 });
 
 router.get('/api/get/messages', (req, res, next) => {
     const num = Number(req.query.record)? Number(req.query.record):20;
-
-    pool.query(`SELECT * FROM messages ORDER BY date_created desc limit $1`,
-        [num], (q_err, q_res) => {
-            if (q_res){
-                res.json(q_res.rows)
-            } else {
-                res.json([])
-            }
-
-        });
+    const sql = `SELECT * FROM messages ORDER BY date_created desc limit $1`
+    runQuery(sql, [num] )
+        .then((result) => {
+        if (result.rows){
+            res.json(result.rows)
+        } else {
+            res.json([])
+        }})
+        .catch(err => next(err))
 });
 
+function checkDataBaseState() {
+    const sql = `SELECT relname FROM pg_class WHERE relname = 'messages'`
+    runQuery(sql, []).then((result) =>{
+        if(result.rows.length===0){
+            pool.query(`CREATE TABLE messages (id SERIAL PRIMARY KEY, message TEXT, date_created TIMESTAMP)`)
+            console.log('Table was created')
+        }
+    }).catch((err) => console.log(err.message))
 
-module.exports = router
+}
+
+module.exports = {
+    router,
+    checkDataBaseState
+}
