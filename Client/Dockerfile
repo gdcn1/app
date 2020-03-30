@@ -5,4 +5,4 @@ RUN npm ci --only=production
 
 FROM node:12.16-alpine
 COPY --from=builder /usr/src/app ./
-ENTRYPOINT  [ "npm", "start" ]
+ENTRYPOINT  [ "npm", "run", "prod" ]
