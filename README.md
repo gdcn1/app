@@ -31,9 +31,8 @@ The "Client" directory contains the React code. The "Server" directory contains 
 
 <ol>
   <li>Open the PSQL shell and login to PSQL</li>
-  <li>Create a new PSQL database if you have not already done so. </li>
-  <li>Simply copy the SQL code in the Server/main/schema.sql file and paste it in as commands into the PSQL shell.  </li> 
-  <li> In the Server/.env file replace values with the login info for your own PSQL database. </li>
-  <li> After setting up the PSQL database and making the required adjustments in the db.js file, the app will be fully functional. </li> 
+  <li>Create a new PSQL database if you have not already done so. </li>   
+  <li> In the Server/.env file replace values with the login info for your own PSQL database. </li>   
+  <li> In the Client/.env.development set url for backend</li>
 </ol>
 
