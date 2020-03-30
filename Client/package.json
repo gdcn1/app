@@ -17,7 +17,8 @@
     "start": "eval $(cat .env.development) react-scripts start",
     "build": "eval $(cat .env.production) react-scripts build",
     "test": "eval $(cat .env.development) react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prod": "react-scripts build"
   },
   "eslintConfig": {
     "extends": "react-app"
