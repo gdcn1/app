@@ -1,0 +1,34 @@
+version: '3.3'
+
+services:
+
+  server:
+    build:
+      context: ./Server
+    links:
+      - "database:database"
+    environment:
+      PORT: 5000
+      DB_USER: postgres
+      DB_HOST: database
+      DB_SCHEME: postgres
+      DB_PASSWORD: password
+      DB_PORT: 5432
+      FRONT_URL: "http://localhost:3000"
+    ports:
+      - "5000:5000"
+    depends_on:
+      - "database"
+
+  client:
+    build:
+      context: ./Client
+    ports:
+    - "3000:80"
+
+  database:
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: password
+    image: "postgres"
