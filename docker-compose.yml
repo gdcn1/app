@@ -4,7 +4,7 @@ services:
 
   server:
     build:
-      context: ./Server
+      context: Server
     links:
       - "database:database"
     environment:
@@ -22,7 +22,11 @@ services:
 
   client:
     build:
-      context: ./Client
+      context: Client
+      args:
+        REACT_APP_RECORD_NUMBER_TO_DISPLAY: 10
+        REACT_APP_API_ENDPOINT: "http://localhost:5000"
+
     ports:
     - "3000:80"
 
