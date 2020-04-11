@@ -10,8 +10,17 @@ sudo apt install nodejs
 This project requires a PostgreSQL database to run.
 
 #### Run database
+You may need to first start docker
 ```
-docker run -it -p 5432:5432 -e POSTGRES_PASSWORD=password postgres
+docker-machine create box
+```
+And to set the enviroment variables suggested by 
+```
+docker-machine env box
+```
+The run the database
+```
+docker run -it -p 5432:5432 -e POSTGRES_PASSWORD=[password] postgres
 ```
 
 #### Clone project repository and change directory to the repository in two terminal windows
