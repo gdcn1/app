@@ -20,7 +20,7 @@ docker-machine env box
 ```
 The run the database
 ```
-docker run -it -p 5432:5432 -e POSTGRES_PASSWORD=[password] postgres
+docker run -it -p 5432:5432 -e POSTGRES_PASSWORD=postgres postgres
 ```
 
 #### Clone project repository and change directory to the repository in two terminal windows
@@ -34,18 +34,20 @@ The "Client" directory contains the React code.
 ```
 cd Client
 npm install
-npm start
+npm start 
 ```
+
 
 #### 2nd window Server
 The "Server" directory contains the code for the node.js express server. 
 ```
 cd Server
 npm install
-npm run custom
+npm start  
 ```
 
-As both command `npm start` and `npm run custom` are running application frontend will be available at http://localhost:3000
+As both command `npm start` for client and ` ... npm start` for Server are running application frontend will be available at http://localhost:3000
+
 
 
 ### Run application in Docker
