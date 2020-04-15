@@ -10,7 +10,7 @@ const App = () => {
             <Layout>
                 <Header>
                     <Title style={{color: "wheat"}} level={2}>
-                        GoodCoin
+                        GoodCoin1
                     </Title>
                 </Header>
                 <Content>
